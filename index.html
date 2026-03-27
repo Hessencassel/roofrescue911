@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roof Rescue 911 | Greater Fort Wayne's Emergency Roofing & Storm Damage Experts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #C1121F;
+      --red-dark: #8B0000;
+      --red-light: #E63946;
+      --charcoal: #2C3E50;
+      --dark: #1B2631;
+      --mid: #34495E;
+      --steel: #5D6D7E;
+      --silver: #85929E;
+      --light: #F4F6F7;
+      --white: #FFFFFF;
+      --gold: #D4A017;
+      --section-bg: #F0F3F4;
+      --section-alt: #E8ECF0;
+      --text-dark: #1B2631;
+      --text-mid: #34495E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--light);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ===== ANNOUNCEMENT BAR ===== */
+    .announcement {
+      background: var(--red);
+      text-align: center;
+      padding: 10px 20px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      animation: pulse-bar 3s ease-in-out infinite;
+    }
+    .announcement a { color: var(--white); text-decoration: none; }
+    .announcement a:hover { text-decoration: underline; }
+    @keyframes pulse-bar {
+      0%, 100% { background: var(--red); }
+      50% { background: var(--red-dark); }
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(17,17,17,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 72px;
+    }
+
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-logo small {
+      display: block;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      color: var(--silver);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--silver);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--red);
+      color: var(--white) !important;
+      padding: 10px 22px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      display: inline-block;
+    }
+    .nav-cta:hover { background: var(--red-light); transform: translateY(-1px); }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--dark);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(193,18,31,0.15) 0%, transparent 50%),
+        linear-gradient(to right, rgba(17,17,17,0.95) 40%, rgba(17,17,17,0.5) 100%),
+        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80') center/cover no-repeat;
+    }
+
+    /* diagonal accent */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0; right: 0;
+      height: 120px;
+      background: var(--dark);
+      clip-path: polygon(0 60%, 100% 0, 100% 100%, 0 100%);
+    }
+
+    /* big background number */
+    .hero-bg-num {
+      position: absolute;
+      right: -20px;
+      bottom: 80px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 30vw;
+      font-weight: 900;
+      color: rgba(255,255,255,0.03);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 40px 160px;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(193,18,31,0.15);
+      border: 1px solid rgba(193,18,31,0.4);
+      padding: 6px 16px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red-light);
+      margin-bottom: 28px;
+      animation: fadeInUp 0.6s ease both;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--red-light);
+      border-radius: 50%;
+      animation: blink 1.2s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(3.5rem, 8vw, 7.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.92;
+      letter-spacing: -0.01em;
+      margin-bottom: 28px;
+      animation: fadeInUp 0.6s 0.1s ease both;
+    }
+    .hero h1 .accent { color: var(--red); display: block; }
+    .hero h1 .outline {
+      -webkit-text-stroke: 2px rgba(255,255,255,0.2);
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 520px;
+      line-height: 1.65;
+      margin-bottom: 42px;
+      animation: fadeInUp 0.6s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+      animation: fadeInUp 0.6s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      padding: 18px 36px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.1);
+      transform: translateX(-100%);
+      transition: transform 0.3s;
+    }
+    .btn-primary:hover::after { transform: translateX(0); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(193,18,31,0.4); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      padding: 17px 36px;
+      border: 2px solid rgba(255,255,255,0.3);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      animation: fadeInUp 0.6s 0.4s ease both;
+    }
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--red); }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--silver);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== TRUST BAR ===== */
+    .trust-bar {
+      background: var(--charcoal);
+      border-top: 1px solid var(--steel);
+      border-bottom: 1px solid var(--steel);
+      padding: 20px 40px;
+    }
+    .trust-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--silver);
+    }
+    .trust-icon {
+      width: 28px; height: 28px;
+      background: var(--red);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    /* ===== SECTIONS ===== */
+    section { padding: 100px 40px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::before {
+      content: '';
+      width: 32px; height: 2px;
+      background: var(--red);
+    }
+
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+      color: var(--text-dark);
+    }
+
+    /* ===== WHY US ===== */
+    .why-us {
+      background: var(--section-bg);
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 60px;
+    }
+    .why-text p {
+      color: var(--text-mid);
+      line-height: 1.75;
+      font-size: 1.05rem;
+      margin-bottom: 20px;
+    }
+
+    .differentiator-list {
+      list-style: none;
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .differentiator-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 20px;
+      background: var(--white);
+      border-left: 3px solid var(--red);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .diff-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .diff-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 3px;
+    }
+    .diff-desc {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    /* Insurance Claim Feature Box */
+    .claim-box {
+      background: var(--red);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .claim-box::before {
+      content: '$';
+      position: absolute;
+      right: -10px;
+      bottom: -20px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12rem;
+      font-weight: 900;
+      color: rgba(0,0,0,0.15);
+      line-height: 1;
+    }
+    .claim-box-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 12px;
+    }
+    .claim-box h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .claim-box p {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      opacity: 0.9;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .claim-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .claim-step {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .claim-step-num {
+      width: 28px; height: 28px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .btn-white {
+      background: var(--white);
+      color: var(--red);
+      padding: 14px 28px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+      position: relative; z-index: 1;
+    }
+    .btn-white:hover { background: var(--light); transform: translateY(-2px); }
+
+    /* ===== SERVICES ===== */
+    .services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+      background: var(--steel);
+    }
+    .service-card {
+      background: var(--section-bg);
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+      cursor: default;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { background: var(--white); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 4rem;
+      font-weight: 900;
+      color: rgba(0,0,0,0.06);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .service-icon {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+    }
+    .service-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .service-tag {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+      border: 1px solid rgba(193,18,31,0.3);
+      padding: 4px 10px;
+    }
+
+    /* ===== EMERGENCY BANNER ===== */
+    .emergency-banner {
+      background: var(--red);
+      padding: 60px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .emergency-banner::before {
+      content: '911';
+      position: absolute;
+      right: 60px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14rem;
+      font-weight: 900;
+      color: rgba(0,0,0,0.1);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .emergency-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .emergency-text h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.05;
+      margin-bottom: 8px;
+    }
+    .emergency-text p {
+      font-size: 1rem;
+      opacity: 0.85;
+    }
+    .emergency-phone {
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .phone-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 4px;
+    }
+    .phone-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      color: var(--white);
+      display: block;
+      transition: opacity 0.2s;
+    }
+    .phone-num:hover { opacity: 0.85; }
+    .availability {
+      font-size: 0.78rem;
+      opacity: 0.7;
+      margin-top: 4px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials { background: var(--section-bg); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+    }
+    .testimonial-card {
+      background: var(--white);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 32px 28px;
+      border-top: 3px solid var(--red);
+      position: relative;
+    }
+    .stars {
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    .testimonial-text {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-mid);
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .testimonial-author {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dark);
+    }
+    .testimonial-location {
+      font-size: 0.78rem;
+      color: var(--steel);
+      margin-top: 2px;
+    }
+    .quote-mark {
+      position: absolute;
+      top: 20px; right: 24px;
+      font-size: 4rem;
+      color: rgba(193,18,31,0.12);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    /* ===== ABOUT ===== */
+    .about { background: var(--white); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 60px;
+    }
+    .about-photo {
+      position: relative;
+    }
+    .about-photo-frame {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: var(--section-bg);
+      border: 2px solid var(--steel);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .about-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .about-photo-frame .placeholder-text {
+      text-align: center;
+      color: var(--silver);
+    }
+    .about-photo-frame .placeholder-text .big-icon {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 12px;
+      opacity: 0.4;
+    }
+    .about-photo-frame .placeholder-text p {
+      font-size: 0.82rem;
+      opacity: 0.5;
+    }
+    .about-accent {
+      position: absolute;
+      bottom: -16px; right: -16px;
+      background: var(--red);
+      padding: 20px 28px;
+    }
+    .about-accent-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .about-accent-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+    .about-content h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+    .about-content p {
+      color: var(--text-mid);
+      line-height: 1.75;
+      font-size: 1rem;
+      margin-bottom: 18px;
+    }
+    .about-values {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .value-pill {
+      background: var(--section-bg);
+      border: 1px solid var(--steel);
+      padding: 12px 16px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .value-pill::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ===== CTA SECTION ===== */
+    .final-cta {
+      background: var(--section-bg);
+      padding: 100px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+    }
+    .cta-form-wrap {
+      max-width: 560px;
+      margin: 48px auto 0;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .form-input {
+      background: var(--white);
+      border: 1px solid #CBD5E0;
+      color: var(--text-dark);
+      padding: 14px 18px;
+      font-size: 0.9rem;
+      font-family: 'Barlow', sans-serif;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input::placeholder { color: #AAB2BD; }
+    .form-input:focus { border-color: var(--red); }
+    .form-input.full { grid-column: 1 / -1; }
+    .form-submit {
+      width: 100%;
+      margin-top: 12px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid var(--steel);
+      padding: 60px 40px 40px;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: var(--silver);
+      line-height: 1.7;
+      margin-top: 16px;
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li {
+      margin-bottom: 10px;
+      font-size: 0.88rem;
+      color: var(--silver);
+    }
+    .footer-col a {
+      color: var(--silver);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid var(--steel);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .social-link {
+      width: 36px; height: 36px;
+      background: var(--mid);
+      border: 1px solid var(--steel);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: var(--silver);
+      transition: all 0.2s;
+    }
+    .social-link:hover {
+      background: var(--red);
+      border-color: var(--red);
+      color: var(--white);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      section { padding: 70px 20px; }
+      .hero-content { padding: 100px 20px 130px; }
+      .hero h1 { font-size: clamp(3rem, 12vw, 5rem); }
+      .why-grid, .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .emergency-inner { flex-direction: column; text-align: center; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { gap: 28px; flex-wrap: wrap; }
+      .trust-bar { padding: 16px 20px; }
+      .trust-bar-inner { gap: 16px; justify-content: flex-start; }
+      .emergency-banner::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement">
+    🚨 STORM DAMAGE? Don't wait — <a href="tel:2607101811">Call 260-710-1811</a> for a FREE emergency inspection. We work directly with your insurance company.
+  </div>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-logo">
+      Roof Rescue <span>911</span>
+      <small>Greater Fort Wayne, Indiana</small>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#insurance">Insurance Claims</a></li>
+      <li><a href="#about">About Paul</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Free Inspection</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-bg-num">911</div>
+    <div class="hero-content">
+      <div class="hero-badge">Greater Fort Wayne's Emergency Roofing Specialists</div>
+      <h1>
+        Your Roof<br>
+        <span class="accent">Rescued.</span>
+        <span class="outline">Restored.</span>
+      </h1>
+      <p class="hero-sub">Storm damage, leaks, insurance claims — Roof Rescue 911 responds fast, works directly with your insurer, and delivers craftsmanship built to last.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get a Free Inspection</a>
+        <a href="tel:2607101811" class="btn-secondary">📞 260-710-1811</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">24<span>/7</span></div>
+          <div class="stat-label">Emergency Response</div>
+        </div>
+        <div>
+          <div class="stat-num">100<span>%</span></div>
+          <div class="stat-label">Insurance Claim Help</div>
+        </div>
+        <div>
+          <div class="stat-num">Free<span>*</span></div>
+          <div class="stat-label">Roof Inspections</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Bar -->
+  <div class="trust-bar">
+    <div class="trust-bar-inner">
+      <div class="trust-item"><div class="trust-icon">✓</div>Licensed & Insured</div>
+      <div class="trust-item"><div class="trust-icon">🛡</div>Insurance Claim Specialists</div>
+      <div class="trust-item"><div class="trust-icon">⚡</div>24/7 Emergency Service</div>
+      <div class="trust-item"><div class="trust-icon">★</div>5-Star Rated in Fort Wayne</div>
+      <div class="trust-item"><div class="trust-icon">🏠</div>Residential & Commercial</div>
+    </div>
+  </div>
+
+
+<!-- Services -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Roofing Services<br>Done Right</h2>
+    </div>
+    <div class="container">
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-num">01</div>
+          <div class="service-icon">🌩️</div>
+          <div class="service-title">Storm Damage Repair</div>
+          <p class="service-desc">Hail, wind, fallen trees — we assess the full extent of damage and restore your roof to pre-storm condition, fast.</p>
+          <span class="service-tag">Insurance Covered</span>
+        </div>
+        <div class="service-card">
+          <div class="service-num">02</div>
+          <div class="service-icon">🏠</div>
+          <div class="service-title">Residential Roofing</div>
+          <p class="service-desc">Full replacements and repairs for single-family homes, townhomes, and HOA communities using premium materials.</p>
+          <span class="service-tag">Free Estimate</span>
+        </div>
+        <div class="service-card">
+          <div class="service-num">03</div>
+          <div class="service-icon">🏢</div>
+          <div class="service-title">Commercial Roofing</div>
+          <p class="service-desc">Flat roofs, TPO systems, and metal roofing for warehouses, office buildings, and shopping centers.</p>
+          <span class="service-tag">All Roof Types</span>
+        </div>
+        <div class="service-card">
+          <div class="service-num">04</div>
+          <div class="service-icon">🚨</div>
+          <div class="service-title">Emergency Roof Repair</div>
+          <p class="service-desc">Active leak? Structural damage? We're available around the clock to stop the damage before it gets worse.</p>
+          <span class="service-tag">24/7 Response</span>
+        </div>
+        <div class="service-card">
+          <div class="service-num">05</div>
+          <div class="service-icon">🔍</div>
+          <div class="service-title">Leak Detection & Repair</div>
+          <p class="service-desc">Advanced diagnostics to find the source of even the most stubborn leaks, and permanent repairs that last.</p>
+          <span class="service-tag">No More Guessing</span>
+        </div>
+        <div class="service-card">
+          <div class="service-num">06</div>
+          <div class="service-icon">📋</div>
+          <div class="service-title">Roof Inspections</div>
+          <p class="service-desc">Pre-sale inspections, annual maintenance checks, and post-storm assessments — documented and ready for your insurer.</p>
+          <span class="service-tag">Always Free</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency Banner -->
+  <!-- Projects Gallery -->
+
+  <section id="projects" style="background: var(--white); padding: 80px 40px;">
+    <div class="container">
+      <div class="section-label">Our Work</div>
+      <h2 class="section-title" style="color: var(--text-dark);">Real Projects.<br>Real Results.</h2>
+      <p style="color: var(--text-mid); margin-top: 12px; margin-bottom: 48px; font-size: 1rem; max-width: 560px; line-height: 1.7;">Every roof we install is built to last. Here are two recent projects in the Greater Fort Wayne area — both featuring premium metal roofing systems.</p>
+
+      <!-- Project 1 -->
+      <div style="margin-bottom: 60px;">
+        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+          <div style="background: var(--red); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 6px 14px;">Project 01</div>
+          <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dark);">Residential Metal Roof — Fort Wayne</div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+          <div style="aspect-ratio: 4/3; overflow: hidden; background: var(--section-bg);">
+            <img src="Roof1-Pic1.png" alt="Project 1 - Photo 1" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+          </div>
+          <div style="aspect-ratio: 4/3; overflow: hidden; background: var(--section-bg);">
+            <img src="Roof1-Pic2.png" alt="Project 1 - Photo 2" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+          </div>
+          <div style="aspect-ratio: 4/3; overflow: hidden; background: var(--section-bg);">
+            <img src="Roof1-Pic3.png" alt="Project 1 - Photo 3" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+          </div>
+          <div style="aspect-ratio: 4/3; overflow: hidden; background: var(--section-bg);">
+            <img src="Roof1-Pic4.png" alt="Project 1 - Photo 4" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+          </div>
+        </div>
+        <div style="margin-top: 16px; padding: 16px 20px; background: var(--section-bg); border-left: 3px solid var(--red); display: flex; gap: 32px; flex-wrap: wrap;">
+          <div><span style="font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--red);">Roof Type</span><br><span style="font-size:0.9rem; font-weight:600; color:var(--text-dark);">Metal Tile System</span></div>
+          <div><span style="font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--red);">Location</span><br><span style="font-size:0.9rem; font-weight:600; color:var(--text-dark);">Fort Wayne, IN</span></div>
+          <div><span style="font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--red);">Type</span><br><span style="font-size:0.9rem; font-weight:600; color:var(--text-dark);">Residential</span></div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div>
+        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+          <div style="background: var(--text-dark); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 6px 14px;">Project 02</div>
+          <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dark);">Standing Seam Metal Roof — Fort Wayne</div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+          <div style="aspect-ratio: 4/3; overflow: hidden; background: var(--section-bg);">
+            <img src="Roof2-Pic1.png" alt="Project 2 - Photo 1" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+          </div>
+          <div style="aspect-ratio: 4/3; overflow: hidden; background: var(--section-bg);">
+            <img src="Roof2-Pic2.png" alt="Project 2 - Photo 2" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+          </div>
+          <div style="aspect-ratio: 4/3; overflow: hidden; background: var(--section-bg);">
+            <img src="Roof2-Pic3.png" alt="Project 2 - Photo 3" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+          </div>
+          <div style="aspect-ratio: 4/3; overflow: hidden; background: var(--section-bg);">
+            <img src="Roof2-Pic4.png" alt="Project 2 - Photo 4" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+          </div>
+        </div>
+        <div style="margin-top: 16px; padding: 16px 20px; background: var(--section-bg); border-left: 3px solid var(--text-dark); display: flex; gap: 32px; flex-wrap: wrap;">
+          <div><span style="font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dark);">Roof Type</span><br><span style="font-size:0.9rem; font-weight:600; color:var(--text-dark);">Standing Seam Metal</span></div>
+          <div><span style="font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dark);">Location</span><br><span style="font-size:0.9rem; font-weight:600; color:var(--text-dark);">Fort Wayne, IN</span></div>
+          <div><span style="font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dark);">Type</span><br><span style="font-size:0.9rem; font-weight:600; color:var(--text-dark);">Residential</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section class="why-us">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-text">
+          <div class="section-label">Why Roof Rescue 911</div>
+          <h2 class="section-title">Not Just<br>Another Roofer</h2>
+          <p>Paul Willison founded Roof Rescue 911 after seeing firsthand what bad contractors do to families already stressed from storm damage. His mission: bring integrity, speed, and expertise to every single job.</p>
+          <p>We don't just patch roofs. We handle your insurance claim, coordinate with your adjuster, and make sure you get every dollar you're owed — then we build a roof that lasts.</p>
+          <ul class="differentiator-list">
+            <li>
+              <div class="diff-icon">📋</div>
+              <div>
+                <div class="diff-title">Insurance Claim Experts</div>
+                <div class="diff-desc">We work directly with your insurance company so you don't have to fight alone. From inspection to payout, we handle it.</div>
+              </div>
+            </li>
+            <li>
+              <div class="diff-icon">⚡</div>
+              <div>
+                <div class="diff-title">Rapid Emergency Response</div>
+                <div class="diff-desc">When the storm hits, we're there. 24/7 availability for tarping, leak containment, and emergency repairs.</div>
+              </div>
+            </li>
+            <li>
+              <div class="diff-icon">🤝</div>
+              <div>
+                <div class="diff-title">Transparent, Honest Pricing</div>
+                <div class="diff-desc">No hidden fees, no bait-and-switch. You'll know exactly what we're doing and exactly what it costs before we start.</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div id="insurance">
+          <div class="claim-box">
+            <div class="claim-box-label">Our Specialty</div>
+            <h3>We Handle Your Insurance Claim</h3>
+            <p>Most homeowners leave thousands of dollars on the table after storm damage because they don't know how to negotiate with their insurance adjuster. We do.</p>
+            <div class="claim-steps">
+              <div class="claim-step"><div class="claim-step-num">1</div><span>Free roof inspection & damage documentation</span></div>
+              <div class="claim-step"><div class="claim-step-num">2</div><span>We file the claim & meet your adjuster on-site</span></div>
+              <div class="claim-step"><div class="claim-step-num">3</div><span>We negotiate to maximize your coverage</span></div>
+              <div class="claim-step"><div class="claim-step-num">4</div><span>We complete the repair — you pay only your deductible</span></div>
+            </div>
+            <a href="#contact" class="btn-white">Start My Claim →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="emergency-banner">
+    <div class="emergency-inner">
+      <div class="emergency-text">
+        <h2>Roof Emergency?<br>Call Now. We Answer.</h2>
+        <p>Available 24 hours a day, 7 days a week. No voicemail. No waiting.</p>
+      </div>
+      <div class="emergency-phone">
+        <div class="phone-label">Emergency Hotline</div>
+        <a href="tel:2607101811" class="phone-num">260-710-1811</a>
+        <div class="availability">Available 24/7 · Greater Fort Wayne & Surrounding Areas</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title">Built on a Mission,<br>Not Just a Business</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 40px;">
+        <div>
+          <p style="color: var(--text-mid); line-height: 1.75; font-size: 1rem; margin-bottom: 18px;">Paul Willison's path into roofing was personal. After watching unreliable contractors exploit homeowners after storm damage — leaving incomplete work, inflated bills, and families fighting their insurance companies alone — he decided to do it differently.</p>
+          <p style="color: var(--text-mid); line-height: 1.75; font-size: 1rem; margin-bottom: 18px;">Roof Rescue 911 was built on a simple belief: every homeowner and business deserves a contractor they can trust, a process they can understand, and a roof that actually protects them.</p>
+          <p style="color: var(--text-mid); line-height: 1.75; font-size: 1rem;">Paul brings hands-on construction experience, deep knowledge of the insurance claim process, and a personal commitment to every job. He doesn't send a crew and disappear — he's there.</p>
+        </div>
+        <div>
+          <div style="background: var(--red); padding: 32px; margin-bottom: 24px;">
+            <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 12px;">From the Founder</div>
+            <p style="font-size: 1.05rem; line-height: 1.7; color: var(--white); font-style: italic;">"I started this company because I was tired of seeing families taken advantage of during the most stressful moments of their lives. A damaged roof is an emergency. You deserve someone who treats it that way."</p>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.2); font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--white);">— Paul Willison, Founder</div>
+          </div>
+          <div class="about-values">
+            <div class="value-pill">Transparency</div>
+            <div class="value-pill">Craftsmanship</div>
+            <div class="value-pill">Integrity</div>
+            <div class="value-pill">Accountability</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="reviews">
+    <div class="container">
+      <div class="section-label">Customer Reviews</div>
+      <h2 class="section-title">What Greater Fort Wayne<br>Homeowners Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">After the June storms, I called three roofers. Paul was the only one who showed up same day, documented everything, and told me exactly what my insurance should cover. Got a full replacement for just my deductible.</p>
+          <div class="testimonial-author">Sarah M.</div>
+          <div class="testimonial-location">Southwest Fort Wayne</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">Honest, fast, and professional. They found damage I didn't even know I had and handled the entire insurance process. I didn't have to make a single phone call to my insurer — they did everything.</p>
+          <div class="testimonial-author">Mike R.</div>
+          <div class="testimonial-location">New Haven, IN</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">Called at 11pm after a branch hit my roof. Someone picked up, was at my house by midnight with a tarp, and had the full repair done three days later. Exceptional service.</p>
+          <div class="testimonial-author">Karen T.</div>
+          <div class="testimonial-location">Waynedale Area</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta" id="contact">
+    <div class="container">
+      <div class="section-label" style="justify-content: center;">Get Started</div>
+      <h2 class="section-title">Schedule Your<br>Free Inspection</h2>
+      <p style="color: var(--text-mid); margin-top: 12px; font-size: 1rem;">No obligation. We'll assess your roof, document any damage, and tell you exactly what your options are — including whether you have an insurance claim.</p>
+      <div class="cta-form-wrap">
+        <form action="https://formspree.io/f/xdawrkwg" method="POST" id="inspection-form">
+          <div class="form-row">
+            <input type="text" name="first_name" class="form-input" placeholder="First Name" required />
+            <input type="text" name="last_name" class="form-input" placeholder="Last Name" required />
+          </div>
+          <div class="form-row">
+            <input type="tel" name="phone" class="form-input" placeholder="Phone Number" required />
+            <input type="email" name="email" class="form-input" placeholder="Email Address" required />
+          </div>
+          <input type="text" name="address" class="form-input full" placeholder="Property Address (Greater Fort Wayne Area)" style="margin-bottom: 12px;" />
+          <textarea name="message" class="form-input full" rows="3" placeholder="Tell us what's going on (storm damage, leak, inspection, etc.)" style="resize: vertical;"></textarea>
+          <div id="form-status" style="display:none; padding: 12px 16px; margin-top: 12px; font-size: 0.85rem; font-weight: 600; text-align: center;"></div>
+          <button type="submit" class="btn-primary form-submit" style="display:block; text-align:center; margin-top:12px; width:100%; border:none; cursor:pointer; font-family:'Barlow Condensed',sans-serif; font-size:1.05rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase;">Send My Inspection Request →</button>
+        </form>
+        <p style="margin-top: 12px; font-size: 0.78rem; color: var(--silver);">Or call us directly: <a href="tel:2607101811" style="color: var(--red); font-weight: 700;">260-710-1811</a> · Available 24/7</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="font-size: 1.5rem;">Roof Rescue <span style="color:var(--red)">911</span></div>
+        <p>Greater Fort Wayne's trusted emergency roofing and storm damage restoration specialists. Licensed, insured, and available 24/7.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/roofrescue911" class="social-link" title="Facebook">f</a>
+          <a href="https://x.com/roof_rescue911" class="social-link" title="X / Twitter">𝕏</a>
+          <a href="https://www.linkedin.com/in/splash-willison-7b926071/" class="social-link" title="LinkedIn">in</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li>Storm Damage Repair</li>
+          <li>Insurance Claims</li>
+          <li>Residential Roofing</li>
+          <li>Commercial Roofing</li>
+          <li>Emergency Repair</li>
+          <li>Free Inspections</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#services">Our Services</a></li>
+          <li><a href="#about">About Paul</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Get a Free Quote</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:2607101811">260-710-1811</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#f79e999198b785989891859284948292cec6c6d9959e8d"><span class="__cf_email__" data-cfemail="4920272f26093b26262f3b2c3a2a3c2c707878672b2033">[email&#160;protected]</span></a></li>
+          <li>Fort Wayne, IN 46814</li>
+          <li style="color: var(--red); font-weight: 600;">Available 24/7</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Roof Rescue 911. All Rights Reserved.</span>
+      <span>Licensed &amp; Insured · Serving Greater Fort Wayne &amp; Surrounding Areas</span>
+    </div>
+  </footer>
+  <script>
+    // Formspree AJAX submission
+    const form = document.getElementById('inspection-form');
+    const status = document.getElementById('form-status');
+
+    if (form) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+
+        const data = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          status.style.display = 'block';
+          status.style.background = '#d4edda';
+          status.style.color = '#1A6B3C';
+          status.style.border = '1px solid #c3e6cb';
+          status.textContent = '✓ Request received! Paul will contact you within 24 hours to schedule your free inspection.';
+          form.reset();
+          btn.textContent = 'Send My Inspection Request →';
+          btn.disabled = false;
+        } else {
+          status.style.display = 'block';
+          status.style.background = '#f8d7da';
+          status.style.color = '#C1121F';
+          status.style.border = '1px solid #f5c6cb';
+          status.textContent = 'Something went wrong. Please call us directly at 260-710-1811.';
+          btn.textContent = 'Send My Inspection Request →';
+          btn.disabled = false;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
