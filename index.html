@@ -120,6 +120,103 @@
     }
     .nav-cta:hover { background: var(--red-light); transform: translateY(-1px); }
 
+    /* ===== HAMBURGER / MOBILE MENU ===== */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      margin-left: 12px;
+      flex-shrink: 0;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform-origin: center;
+    }
+    .nav-hamburger[aria-expanded="true"] span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .nav-hamburger[aria-expanded="true"] span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .nav-hamburger[aria-expanded="true"] span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .nav-mobile-menu {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: rgba(17,17,17,0.98);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--red);
+      z-index: 99;
+      flex-direction: column;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .nav-mobile-menu.open {
+      max-height: 420px;
+    }
+    .nav-mobile-menu ul {
+      list-style: none;
+      padding: 8px 0;
+    }
+    .nav-mobile-menu ul li a {
+      display: block;
+      padding: 14px 24px;
+      color: var(--silver);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-mobile-menu ul li a:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.04);
+    }
+    .nav-mobile-menu .nav-mobile-cta {
+      margin: 16px 24px 20px;
+    }
+    .nav-mobile-menu .nav-mobile-cta a {
+      display: block;
+      text-align: center;
+      background: var(--red);
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 20px;
+      transition: background 0.2s;
+    }
+    .nav-mobile-menu .nav-mobile-cta a:hover { background: var(--red-light); }
+
+    @media (max-width: 900px) {
+      .nav-hamburger { display: flex; }
+      .nav-mobile-menu { display: flex; }
+    }
+
     /* ===== HERO ===== */
     .hero {
       position: relative;
@@ -133,6 +230,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
+      will-change: transform;
       background:
         linear-gradient(135deg, rgba(193,18,31,0.15) 0%, transparent 50%),
         linear-gradient(to right, rgba(17,17,17,0.95) 40%, rgba(17,17,17,0.5) 100%),
@@ -805,6 +903,95 @@
       flex-shrink: 0;
     }
 
+    /* ===== LIGHTBOX ===== */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+    }
+    #lightbox.active { display: flex; }
+    #lightbox-img {
+      max-width: min(90vw, 1100px);
+      max-height: 85vh;
+      object-fit: contain;
+      display: block;
+      border: 2px solid rgba(255,255,255,0.08);
+      box-shadow: 0 8px 60px rgba(0,0,0,0.7);
+    }
+    .lb-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      font-size: 1.5rem;
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      user-select: none;
+    }
+    .lb-btn:hover { background: var(--red); border-color: var(--red); }
+    #lb-prev { left: 20px; }
+    #lb-next { right: 20px; }
+    #lb-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.6rem;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+    #lb-close:hover { opacity: 1; }
+    #lb-counter {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.5);
+    }
+    .lb-trigger { cursor: zoom-in; }
+
+    /* ===== SERVICE AREA ===== */
+    .service-area { background: var(--section-bg); }
+    .service-area-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 40px;
+    }
+    .area-badge {
+      display: flex;
+      align-items: center;
+      background: var(--white);
+      border-left: 4px solid var(--red);
+      padding: 12px 16px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+
     /* ===== CTA SECTION ===== */
     .final-cta {
       background: var(--section-bg);
@@ -928,6 +1115,7 @@
     @media (max-width: 900px) {
       nav { padding: 0 20px; }
       .nav-links { display: none; }
+      nav > .nav-cta { display: none; }
       section { padding: 70px 20px; }
       .hero-content { padding: 100px 20px 130px; }
       .hero h1 { font-size: clamp(3rem, 12vw, 5rem); }
@@ -942,7 +1130,318 @@
       .trust-bar-inner { gap: 16px; justify-content: flex-start; }
       .emergency-banner::before { display: none; }
     }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== BEFORE/AFTER SLIDER ===== */
+    .ba-slider {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--section-bg);
+      cursor: ew-resize;
+      grid-column: 1 / -1;
+      user-select: none;
+    }
+    .ba-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+    .ba-after-wrap {
+      position: absolute;
+      inset: 0;
+      clip-path: inset(0 0 0 50%);
+    }
+    .ba-after-wrap .ba-img {
+      position: absolute;
+      inset: 0;
+    }
+    .ba-divider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 3px;
+      background: var(--white);
+      transform: translateX(-50%);
+      pointer-events: none;
+      box-shadow: 0 0 10px rgba(0,0,0,0.45);
+    }
+    .ba-divider::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--white)
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231B2631'%3E%3Cpath d='M8.59 16.59L4 12l4.59-4.59L7.17 6 1 12l6.17 6 1.42-1.41zm6.82 0L20 12l-4.59-4.59L16.83 6 23 12l-6.17 6-1.42-1.41z'/%3E%3C/svg%3E")
+        no-repeat center / 22px 22px;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.35);
+    }
+    .ba-range {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      opacity: 0;
+      cursor: ew-resize;
+      -webkit-appearance: none;
+      appearance: none;
+      z-index: 10;
+    }
+    .ba-label {
+      position: absolute;
+      bottom: 14px;
+      background: rgba(0,0,0,0.52);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      pointer-events: none;
+    }
+    .ba-label-l { left: 14px; }
+    .ba-label-r { right: 14px; }
+
+    /* ===== URGENCY POPUP ===== */
+    #urgency-popup {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: min(360px, calc(100vw - 40px));
+      background: var(--dark);
+      border: 1px solid var(--red);
+      border-left: 4px solid var(--red);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.55);
+      z-index: 9999;
+      transform: translateY(120%);
+      opacity: 0;
+      transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), opacity 0.45s ease;
+      pointer-events: none;
+    }
+    #urgency-popup.visible {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .urgency-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--red);
+      padding: 10px 14px;
+    }
+    .urgency-badge {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    #urgency-close {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.15rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0 2px;
+      opacity: 0.85;
+    }
+    #urgency-close:hover { opacity: 1; }
+    .urgency-body {
+      padding: 18px 18px 20px;
+    }
+    .urgency-body p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--light);
+      margin-bottom: 16px;
+    }
+    .urgency-body p strong {
+      color: var(--white);
+    }
+    .urgency-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .urgency-cta {
+      flex: 1;
+      background: var(--red);
+      color: var(--white);
+      border: none;
+      padding: 11px 10px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .urgency-cta:hover { background: var(--red-dark); }
+    .urgency-dismiss {
+      background: transparent;
+      color: var(--silver);
+      border: 1px solid var(--steel);
+      padding: 11px 14px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .urgency-dismiss:hover { color: var(--white); border-color: var(--silver); }
+
+    @media (max-width: 767px) {
+      @keyframes scroll-trust {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+      }
+      @keyframes float-btn-in {
+        from { transform: translateY(100%); opacity: 0; }
+        to   { transform: translateY(0);    opacity: 1; }
+      }
+
+      .trust-bar { overflow: hidden; padding: 14px 0; }
+      .trust-bar-inner {
+        flex-wrap: nowrap;
+        max-width: none;
+        margin: 0;
+        gap: 0;
+        justify-content: flex-start;
+        animation: scroll-trust 20s linear infinite;
+        width: max-content;
+      }
+      .trust-bar-inner .trust-item {
+        flex-shrink: 0;
+        padding: 0 28px;
+        white-space: nowrap;
+      }
+
+      .float-call-btn {
+        display: flex;
+      }
+    }
+
+    /* ===== FLOATING CALL BUTTON (mobile only) ===== */
+    .float-call-btn {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9998;
+      align-items: center;
+      justify-content: center;
+      background: var(--red);
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 16px 20px;
+      box-shadow: 0 -3px 16px rgba(193,18,31,0.45);
+      animation: float-btn-in 0.5s cubic-bezier(0.22,1,0.36,1) 0.6s both;
+    }
+    .float-call-btn:active { background: var(--red-dark); }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Roof Rescue 911",
+    "telephone": "260-710-1811",
+    "url": "https://roofrescu911.com",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Fort Wayne",
+      "addressLocality": "Fort Wayne",
+      "addressRegion": "IN",
+      "postalCode": "46814",
+      "addressCountry": "US"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Fort Wayne" },
+      { "@type": "City", "name": "New Haven" },
+      { "@type": "City", "name": "Waynedale" },
+      { "@type": "City", "name": "Leo-Cedarville" },
+      { "@type": "City", "name": "Huntertown" },
+      { "@type": "City", "name": "Churubusco" },
+      { "@type": "City", "name": "Woodburn" },
+      { "@type": "AdministrativeArea", "name": "Allen County" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does insurance cover storm damage roof repair in Fort Wayne?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In most cases yes — Roof Rescue 911 works directly with your insurance adjuster to document damage and maximize your claim."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How fast can you respond to an emergency roof repair?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer 24/7 emergency response throughout Greater Fort Wayne and surrounding Allen County communities."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer free roof inspections?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — all roof inspections are completely free with no obligation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What areas do you serve?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We serve Fort Wayne, New Haven, Leo-Cedarville, Huntertown, Churubusco, Woodburn, Waynedale, and all of Allen County, Indiana."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -952,7 +1451,7 @@
   </div>
 
   <!-- Nav -->
-  <nav>
+  <nav id="main-nav">
     <div class="nav-logo">
       Roof Rescue <span>911</span>
       <small>Greater Fort Wayne, Indiana</small>
@@ -963,9 +1462,26 @@
       <li><a href="#insurance">Insurance Claims</a></li>
       <li><a href="#about">About Paul</a></li>
       <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#service-area">Service Area</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Free Inspection</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-mobile-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
+  <div class="nav-mobile-menu" id="nav-mobile-menu" role="navigation" aria-label="Mobile navigation">
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#insurance">Insurance Claims</a></li>
+      <li><a href="#about">About Paul</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#service-area">Service Area</a></li>
+    </ul>
+    <div class="nav-mobile-cta"><a href="#contact">Free Inspection</a></div>
+  </div>
 
   <!-- Hero -->
   <section class="hero">
@@ -1003,11 +1519,18 @@
   <!-- Trust Bar -->
   <div class="trust-bar">
     <div class="trust-bar-inner">
-      <div class="trust-item"><div class="trust-icon">✓</div>Licensed & Insured</div>
-      <div class="trust-item"><div class="trust-icon">🛡</div>Insurance Claim Specialists</div>
-      <div class="trust-item"><div class="trust-icon">⚡</div>24/7 Emergency Service</div>
-      <div class="trust-item"><div class="trust-icon">★</div>5-Star Rated in Fort Wayne</div>
-      <div class="trust-item"><div class="trust-icon">🏠</div>Residential & Commercial</div>
+      <!-- original set -->
+      <div class="trust-item reveal"><div class="trust-icon">✓</div>Licensed & Insured</div>
+      <div class="trust-item reveal"><div class="trust-icon">🛡</div>Insurance Claim Specialists</div>
+      <div class="trust-item reveal"><div class="trust-icon">⚡</div>24/7 Emergency Service</div>
+      <div class="trust-item reveal"><div class="trust-icon">★</div>5-Star Rated in Fort Wayne</div>
+      <div class="trust-item reveal"><div class="trust-icon">🏠</div>Residential & Commercial</div>
+      <!-- cloned set for seamless loop (hidden on desktop via aria-hidden) -->
+      <div class="trust-item" aria-hidden="true"><div class="trust-icon">✓</div>Licensed & Insured</div>
+      <div class="trust-item" aria-hidden="true"><div class="trust-icon">🛡</div>Insurance Claim Specialists</div>
+      <div class="trust-item" aria-hidden="true"><div class="trust-icon">⚡</div>24/7 Emergency Service</div>
+      <div class="trust-item" aria-hidden="true"><div class="trust-icon">★</div>5-Star Rated in Fort Wayne</div>
+      <div class="trust-item" aria-hidden="true"><div class="trust-icon">🏠</div>Residential & Commercial</div>
     </div>
   </div>
 
@@ -1020,42 +1543,42 @@
     </div>
     <div class="container">
       <div class="services-grid">
-        <div class="service-card">
+        <div class="service-card reveal">
           <div class="service-num">01</div>
           <div class="service-icon">🌩️</div>
           <div class="service-title">Storm Damage Repair</div>
           <p class="service-desc">Hail, wind, fallen trees — we assess the full extent of damage and restore your roof to pre-storm condition, fast.</p>
           <span class="service-tag">Insurance Covered</span>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal">
           <div class="service-num">02</div>
           <div class="service-icon">🏠</div>
           <div class="service-title">Residential Roofing</div>
           <p class="service-desc">Full replacements and repairs for single-family homes, townhomes, and HOA communities using premium materials.</p>
           <span class="service-tag">Free Estimate</span>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal">
           <div class="service-num">03</div>
           <div class="service-icon">🏢</div>
           <div class="service-title">Commercial Roofing</div>
           <p class="service-desc">Flat roofs, TPO systems, and metal roofing for warehouses, office buildings, and shopping centers.</p>
           <span class="service-tag">All Roof Types</span>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal">
           <div class="service-num">04</div>
           <div class="service-icon">🚨</div>
           <div class="service-title">Emergency Roof Repair</div>
           <p class="service-desc">Active leak? Structural damage? We're available around the clock to stop the damage before it gets worse.</p>
           <span class="service-tag">24/7 Response</span>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal">
           <div class="service-num">05</div>
           <div class="service-icon">🔍</div>
           <div class="service-title">Leak Detection & Repair</div>
           <p class="service-desc">Advanced diagnostics to find the source of even the most stubborn leaks, and permanent repairs that last.</p>
           <span class="service-tag">No More Guessing</span>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal">
           <div class="service-num">06</div>
           <div class="service-icon">📋</div>
           <div class="service-title">Roof Inspections</div>
@@ -1082,11 +1605,18 @@
           <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dark);">Residential Metal Roof — Fort Wayne</div>
         </div>
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
-          <div style="aspect-ratio: 4/3; overflow: hidden; background: var(--section-bg);">
-            <img src="Roof1-Pic1.png" alt="Project 1 - Photo 1" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
-          </div>
-          <div style="aspect-ratio: 4/3; overflow: hidden; background: var(--section-bg);">
-            <img src="Roof1-Pic2.png" alt="Project 1 - Photo 2" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+          <!-- Before/After comparison slider -->
+          <div class="ba-slider" id="ba-p1">
+            <img class="ba-img" src="Roof1-Pic1.png" alt="Before — original roof" />
+            <div class="ba-after-wrap" id="ba-p1-after">
+              <img class="ba-img" src="Roof1-Pic2.png" alt="After — new metal roof" />
+            </div>
+            <div class="ba-divider" id="ba-p1-div"></div>
+            <input type="range" class="ba-range" min="0" max="100" value="50"
+                   aria-label="Drag to compare before and after"
+                   oninput="var v=this.value;document.getElementById('ba-p1-after').style.clipPath='inset(0 0 0 '+(100-v)+'%)';document.getElementById('ba-p1-div').style.left=v+'%';" />
+            <span class="ba-label ba-label-l">Before</span>
+            <span class="ba-label ba-label-r">After</span>
           </div>
           <div style="aspect-ratio: 4/3; overflow: hidden; background: var(--section-bg);">
             <img src="Roof1-Pic3.png" alt="Project 1 - Photo 3" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
@@ -1110,16 +1640,16 @@
         </div>
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
           <div style="aspect-ratio: 4/3; overflow: hidden; background: var(--section-bg);">
-            <img src="Roof2-Pic1.png" alt="Project 2 - Photo 1" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+            <img src="Roof2-Pic1.png" alt="Project 2 - Photo 1" class="lb-trigger" data-lightbox="p2" data-index="0" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
           </div>
           <div style="aspect-ratio: 4/3; overflow: hidden; background: var(--section-bg);">
-            <img src="Roof2-Pic2.png" alt="Project 2 - Photo 2" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+            <img src="Roof2-Pic2.png" alt="Project 2 - Photo 2" class="lb-trigger" data-lightbox="p2" data-index="1" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
           </div>
           <div style="aspect-ratio: 4/3; overflow: hidden; background: var(--section-bg);">
-            <img src="Roof2-Pic3.png" alt="Project 2 - Photo 3" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+            <img src="Roof2-Pic3.png" alt="Project 2 - Photo 3" class="lb-trigger" data-lightbox="p2" data-index="2" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
           </div>
           <div style="aspect-ratio: 4/3; overflow: hidden; background: var(--section-bg);">
-            <img src="Roof2-Pic4.png" alt="Project 2 - Photo 4" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+            <img src="Roof2-Pic4.png" alt="Project 2 - Photo 4" class="lb-trigger" data-lightbox="p2" data-index="3" style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
           </div>
         </div>
         <div style="margin-top: 16px; padding: 16px 20px; background: var(--section-bg); border-left: 3px solid var(--text-dark); display: flex; gap: 32px; flex-wrap: wrap;">
@@ -1141,21 +1671,21 @@
           <p>Paul Willison founded Roof Rescue 911 after seeing firsthand what bad contractors do to families already stressed from storm damage. His mission: bring integrity, speed, and expertise to every single job.</p>
           <p>We don't just patch roofs. We handle your insurance claim, coordinate with your adjuster, and make sure you get every dollar you're owed — then we build a roof that lasts.</p>
           <ul class="differentiator-list">
-            <li>
+            <li class="reveal">
               <div class="diff-icon">📋</div>
               <div>
                 <div class="diff-title">Insurance Claim Experts</div>
                 <div class="diff-desc">We work directly with your insurance company so you don't have to fight alone. From inspection to payout, we handle it.</div>
               </div>
             </li>
-            <li>
+            <li class="reveal">
               <div class="diff-icon">⚡</div>
               <div>
                 <div class="diff-title">Rapid Emergency Response</div>
                 <div class="diff-desc">When the storm hits, we're there. 24/7 availability for tarping, leak containment, and emergency repairs.</div>
               </div>
             </li>
-            <li>
+            <li class="reveal">
               <div class="diff-icon">🤝</div>
               <div>
                 <div class="diff-title">Transparent, Honest Pricing</div>
@@ -1165,7 +1695,7 @@
           </ul>
         </div>
         <div id="insurance">
-          <div class="claim-box">
+          <div class="claim-box reveal">
             <div class="claim-box-label">Our Specialty</div>
             <h3>We Handle Your Insurance Claim</h3>
             <p>Most homeowners leave thousands of dollars on the table after storm damage because they don't know how to negotiate with their insurance adjuster. We do.</p>
@@ -1202,12 +1732,12 @@
       <div class="section-label">Our Story</div>
       <h2 class="section-title">Built on a Mission,<br>Not Just a Business</h2>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 40px;">
-        <div>
+        <div class="reveal">
           <p style="color: var(--text-mid); line-height: 1.75; font-size: 1rem; margin-bottom: 18px;">Paul Willison's path into roofing was personal. After watching unreliable contractors exploit homeowners after storm damage — leaving incomplete work, inflated bills, and families fighting their insurance companies alone — he decided to do it differently.</p>
           <p style="color: var(--text-mid); line-height: 1.75; font-size: 1rem; margin-bottom: 18px;">Roof Rescue 911 was built on a simple belief: every homeowner and business deserves a contractor they can trust, a process they can understand, and a roof that actually protects them.</p>
           <p style="color: var(--text-mid); line-height: 1.75; font-size: 1rem;">Paul brings hands-on construction experience, deep knowledge of the insurance claim process, and a personal commitment to every job. He doesn't send a crew and disappear — he's there.</p>
         </div>
-        <div>
+        <div class="reveal">
           <div style="background: var(--red); padding: 32px; margin-bottom: 24px;">
             <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 12px;">From the Founder</div>
             <p style="font-size: 1.05rem; line-height: 1.7; color: var(--white); font-style: italic;">"I started this company because I was tired of seeing families taken advantage of during the most stressful moments of their lives. A damaged roof is an emergency. You deserve someone who treats it that way."</p>
@@ -1230,27 +1760,47 @@
       <div class="section-label">Customer Reviews</div>
       <h2 class="section-title">What Greater Fort Wayne<br>Homeowners Say</h2>
       <div class="testimonials-grid">
-        <div class="testimonial-card">
+        <div class="testimonial-card reveal">
           <div class="quote-mark">"</div>
           <div class="stars">★★★★★</div>
           <p class="testimonial-text">After the June storms, I called three roofers. Paul was the only one who showed up same day, documented everything, and told me exactly what my insurance should cover. Got a full replacement for just my deductible.</p>
           <div class="testimonial-author">Sarah M.</div>
           <div class="testimonial-location">Southwest Fort Wayne</div>
         </div>
-        <div class="testimonial-card">
+        <div class="testimonial-card reveal">
           <div class="quote-mark">"</div>
           <div class="stars">★★★★★</div>
           <p class="testimonial-text">Honest, fast, and professional. They found damage I didn't even know I had and handled the entire insurance process. I didn't have to make a single phone call to my insurer — they did everything.</p>
           <div class="testimonial-author">Mike R.</div>
           <div class="testimonial-location">New Haven, IN</div>
         </div>
-        <div class="testimonial-card">
+        <div class="testimonial-card reveal">
           <div class="quote-mark">"</div>
           <div class="stars">★★★★★</div>
           <p class="testimonial-text">Called at 11pm after a branch hit my roof. Someone picked up, was at my house by midnight with a tarp, and had the full repair done three days later. Exceptional service.</p>
           <div class="testimonial-author">Karen T.</div>
           <div class="testimonial-location">Waynedale Area</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Area -->
+  <section class="service-area" id="service-area">
+    <div class="container">
+      <div class="section-label">Where We Work</div>
+      <h2 class="section-title reveal">Proudly Serving<br>Greater Fort Wayne</h2>
+      <p class="reveal" style="color: var(--text-mid); margin-top: 12px; font-size: 1rem; line-height: 1.7; max-width: 520px;">From Fort Wayne to the surrounding communities, we respond fast when your roof needs help.</p>
+      <div class="service-area-grid">
+        <div class="area-badge reveal">Fort Wayne</div>
+        <div class="area-badge reveal">New Haven</div>
+        <div class="area-badge reveal">Leo-Cedarville</div>
+        <div class="area-badge reveal">Huntertown</div>
+        <div class="area-badge reveal">Churubusco</div>
+        <div class="area-badge reveal">Woodburn</div>
+        <div class="area-badge reveal">Waynedale</div>
+        <div class="area-badge reveal">Monroeville</div>
+        <div class="area-badge reveal">Allen County</div>
       </div>
     </div>
   </section>
@@ -1318,7 +1868,7 @@
         <h4>Contact</h4>
         <ul>
           <li><a href="tel:2607101811">260-710-1811</a></li>
-          <li><a href="/cdn-cgi/l/email-protection#f79e999198b785989891859284948292cec6c6d9959e8d"><span class="__cf_email__" data-cfemail="4920272f26093b26262f3b2c3a2a3c2c707878672b2033">[email&#160;protected]</span></a></li>
+          <li><a href="mailto:paul@roofrescue911.biz">paul@roofrescue911.biz</a></li>
           <li>Fort Wayne, IN 46814</li>
           <li style="color: var(--red); font-weight: 600;">Available 24/7</li>
         </ul>
@@ -1329,6 +1879,80 @@
       <span>Licensed &amp; Insured · Serving Greater Fort Wayne &amp; Surrounding Areas</span>
     </div>
   </footer>
+
+  <!-- Floating Call Button (mobile only) -->
+  <a href="tel:2607101811" class="float-call-btn" aria-label="Call Roof Rescue 911">
+    📞 Call Now — 260-710-1811
+  </a>
+
+  <script>
+    (function () {
+      var btn  = document.getElementById('nav-hamburger');
+      var menu = document.getElementById('nav-mobile-menu');
+      if (!btn || !menu) return;
+
+      function openMenu() {
+        menu.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+      function closeMenu() {
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+      function toggleMenu() {
+        menu.classList.contains('open') ? closeMenu() : openMenu();
+      }
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      // Close when any link inside the drawer is clicked
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      // Close when clicking outside the nav + drawer
+      document.addEventListener('click', function (e) {
+        var nav = document.getElementById('main-nav');
+        if (!nav.contains(e.target) && !menu.contains(e.target)) {
+          closeMenu();
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      // Stagger delays for grouped cards
+      var staggerSelectors = ['.service-card', '.testimonial-card'];
+      staggerSelectors.forEach(function (sel) {
+        document.querySelectorAll(sel).forEach(function (el, i) {
+          el.style.transitionDelay = (i * 0.1) + 's';
+        });
+      });
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+  </script>
+
   <script>
     // Formspree AJAX submission
     const form = document.getElementById('inspection-form');
@@ -1368,6 +1992,128 @@
         }
       });
     }
+  </script>
+
+  <!-- Lightbox -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo lightbox">
+    <button id="lb-close" aria-label="Close lightbox">✕</button>
+    <button class="lb-btn" id="lb-prev" aria-label="Previous photo">&#8592;</button>
+    <img id="lightbox-img" src="" alt="" />
+    <button class="lb-btn" id="lb-next" aria-label="Next photo">&#8594;</button>
+    <div id="lb-counter"></div>
+  </div>
+
+  <script>
+    (function () {
+      var images = Array.from(document.querySelectorAll('[data-lightbox="p2"]'))
+        .sort(function (a, b) { return a.dataset.index - b.dataset.index; });
+      var srcs = images.map(function (el) { return el.src; });
+      var alts = images.map(function (el) { return el.alt; });
+
+      var lb      = document.getElementById('lightbox');
+      var lbImg   = document.getElementById('lightbox-img');
+      var lbCount = document.getElementById('lb-counter');
+      var current = 0;
+
+      function show(i) {
+        current = (i + srcs.length) % srcs.length;
+        lbImg.src = srcs[current];
+        lbImg.alt = alts[current];
+        lbCount.textContent = (current + 1) + ' / ' + srcs.length;
+      }
+
+      function open(i) {
+        show(i);
+        lb.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close() {
+        lb.classList.remove('active');
+        document.body.style.overflow = '';
+        lbImg.src = '';
+      }
+
+      images.forEach(function (el) {
+        el.addEventListener('click', function () { open(+el.dataset.index); });
+      });
+
+      document.getElementById('lb-close').addEventListener('click', close);
+      document.getElementById('lb-prev').addEventListener('click', function () { show(current - 1); });
+      document.getElementById('lb-next').addEventListener('click', function () { show(current + 1); });
+
+      lb.addEventListener('click', function (e) {
+        if (e.target === lb) close();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (!lb.classList.contains('active')) return;
+        if (e.key === 'Escape')      close();
+        if (e.key === 'ArrowLeft')   show(current - 1);
+        if (e.key === 'ArrowRight')  show(current + 1);
+      });
+    })();
+  </script>
+
+  <!-- Urgency Popup -->
+  <div id="urgency-popup" role="dialog" aria-modal="true" aria-labelledby="urgency-msg">
+    <div class="urgency-header">
+      <span class="urgency-badge">⚡ Limited Availability</span>
+      <button id="urgency-close" aria-label="Close">✕</button>
+    </div>
+    <div class="urgency-body">
+      <p id="urgency-msg">
+        <strong>Storm season is here</strong> — get your <strong>FREE inspection</strong> before the wait list fills up.
+        Call <strong><a href="tel:2607101811" style="color:var(--red-light);text-decoration:none;">260-710-1811</a></strong>
+      </p>
+      <div class="urgency-actions">
+        <button class="urgency-cta" id="urgency-schedule">Schedule Now</button>
+        <button class="urgency-dismiss" id="urgency-later">Maybe Later</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var heroBg = document.querySelector('.hero-bg');
+      if (!heroBg) return;
+
+      function onScroll() {
+        if (window.innerWidth > 768) {
+          heroBg.style.transform = 'translateY(' + window.scrollY * 0.5 + 'px)';
+        } else {
+          heroBg.style.transform = '';
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var KEY = 'rr911_urgency_seen';
+      if (sessionStorage.getItem(KEY)) return;
+
+      var popup = document.getElementById('urgency-popup');
+
+      function dismiss() {
+        popup.classList.remove('visible');
+        sessionStorage.setItem(KEY, '1');
+      }
+
+      document.getElementById('urgency-close').addEventListener('click', dismiss);
+      document.getElementById('urgency-later').addEventListener('click', dismiss);
+      document.getElementById('urgency-schedule').addEventListener('click', function () {
+        dismiss();
+        var target = document.getElementById('contact');
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      setTimeout(function () {
+        popup.classList.add('visible');
+      }, 30000);
+    })();
   </script>
 </body>
 </html>
