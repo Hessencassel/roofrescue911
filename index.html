@@ -6,6 +6,7 @@
   <title>Roof Rescue 911 | Greater Fort Wayne's Emergency Roofing & Storm Damage Experts</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -431,12 +432,25 @@
       text-transform: uppercase;
       color: var(--silver);
     }
+    .trust-clone { display: none; }
+
     .trust-icon {
       width: 28px; height: 28px;
       background: var(--red);
       display: flex; align-items: center; justify-content: center;
       font-size: 0.85rem;
       flex-shrink: 0;
+    }
+    .trust-icon i { width: 16px; height: 16px; stroke: var(--white); display: block; }
+
+    .service-icon i { width: 22px; height: 22px; stroke: currentColor; display: block; }
+    .diff-icon i    { width: 22px; height: 22px; stroke: currentColor; display: block; }
+
+    i[data-lucide] {
+      width: 18px; height: 18px;
+      stroke: currentColor;
+      vertical-align: middle;
+      display: inline-block;
     }
 
     /* ===== SECTIONS ===== */
@@ -1342,6 +1356,7 @@
         padding: 0 28px;
         white-space: nowrap;
       }
+      .trust-clone { display: contents; }
 
       .float-call-btn {
         display: flex;
@@ -1447,7 +1462,7 @@
 
   <!-- Announcement Bar -->
   <div class="announcement">
-    🚨 STORM DAMAGE? Don't wait — <a href="tel:2607101811">Call 260-710-1811</a> for a FREE emergency inspection. We work directly with your insurance company.
+    <i data-lucide="alert-triangle"></i> STORM DAMAGE? Don't wait — <a href="tel:2607101811">Call 260-710-1811</a> for a FREE emergency inspection. We work directly with your insurance company.
   </div>
 
   <!-- Nav -->
@@ -1497,7 +1512,7 @@
       <p class="hero-sub">Storm damage, leaks, insurance claims — Roof Rescue 911 responds fast, works directly with your insurer, and delivers craftsmanship built to last.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">Get a Free Inspection</a>
-        <a href="tel:2607101811" class="btn-secondary">📞 260-710-1811</a>
+        <a href="tel:2607101811" class="btn-secondary"><i data-lucide="phone"></i> 260-710-1811</a>
       </div>
       <div class="hero-stats">
         <div>
@@ -1520,17 +1535,19 @@
   <div class="trust-bar">
     <div class="trust-bar-inner">
       <!-- original set -->
-      <div class="trust-item reveal"><div class="trust-icon">✓</div>Licensed & Insured</div>
-      <div class="trust-item reveal"><div class="trust-icon">🛡</div>Insurance Claim Specialists</div>
-      <div class="trust-item reveal"><div class="trust-icon">⚡</div>24/7 Emergency Service</div>
-      <div class="trust-item reveal"><div class="trust-icon">★</div>5-Star Rated in Fort Wayne</div>
-      <div class="trust-item reveal"><div class="trust-icon">🏠</div>Residential & Commercial</div>
-      <!-- cloned set for seamless loop (hidden on desktop via aria-hidden) -->
-      <div class="trust-item" aria-hidden="true"><div class="trust-icon">✓</div>Licensed & Insured</div>
-      <div class="trust-item" aria-hidden="true"><div class="trust-icon">🛡</div>Insurance Claim Specialists</div>
-      <div class="trust-item" aria-hidden="true"><div class="trust-icon">⚡</div>24/7 Emergency Service</div>
-      <div class="trust-item" aria-hidden="true"><div class="trust-icon">★</div>5-Star Rated in Fort Wayne</div>
-      <div class="trust-item" aria-hidden="true"><div class="trust-icon">🏠</div>Residential & Commercial</div>
+      <div class="trust-item reveal"><div class="trust-icon"><i data-lucide="shield-check"></i></div>Licensed & Insured</div>
+      <div class="trust-item reveal"><div class="trust-icon"><i data-lucide="shield"></i></div>Insurance Claim Specialists</div>
+      <div class="trust-item reveal"><div class="trust-icon"><i data-lucide="zap"></i></div>24/7 Emergency Service</div>
+      <div class="trust-item reveal"><div class="trust-icon"><i data-lucide="star"></i></div>5-Star Rated in Fort Wayne</div>
+      <div class="trust-item reveal"><div class="trust-icon"><i data-lucide="home"></i></div>Residential & Commercial</div>
+      <!-- cloned set for seamless loop (mobile ticker only) -->
+      <div class="trust-clone" aria-hidden="true">
+        <div class="trust-item"><div class="trust-icon"><i data-lucide="shield-check"></i></div>Licensed & Insured</div>
+        <div class="trust-item"><div class="trust-icon"><i data-lucide="shield"></i></div>Insurance Claim Specialists</div>
+        <div class="trust-item"><div class="trust-icon"><i data-lucide="zap"></i></div>24/7 Emergency Service</div>
+        <div class="trust-item"><div class="trust-icon"><i data-lucide="star"></i></div>5-Star Rated in Fort Wayne</div>
+        <div class="trust-item"><div class="trust-icon"><i data-lucide="home"></i></div>Residential & Commercial</div>
+      </div>
     </div>
   </div>
 
@@ -1545,42 +1562,42 @@
       <div class="services-grid">
         <div class="service-card reveal">
           <div class="service-num">01</div>
-          <div class="service-icon">🌩️</div>
+          <div class="service-icon"><i data-lucide="cloud-lightning"></i></div>
           <div class="service-title">Storm Damage Repair</div>
           <p class="service-desc">Hail, wind, fallen trees — we assess the full extent of damage and restore your roof to pre-storm condition, fast.</p>
           <span class="service-tag">Insurance Covered</span>
         </div>
         <div class="service-card reveal">
           <div class="service-num">02</div>
-          <div class="service-icon">🏠</div>
+          <div class="service-icon"><i data-lucide="home"></i></div>
           <div class="service-title">Residential Roofing</div>
           <p class="service-desc">Full replacements and repairs for single-family homes, townhomes, and HOA communities using premium materials.</p>
           <span class="service-tag">Free Estimate</span>
         </div>
         <div class="service-card reveal">
           <div class="service-num">03</div>
-          <div class="service-icon">🏢</div>
+          <div class="service-icon"><i data-lucide="building-2"></i></div>
           <div class="service-title">Commercial Roofing</div>
           <p class="service-desc">Flat roofs, TPO systems, and metal roofing for warehouses, office buildings, and shopping centers.</p>
           <span class="service-tag">All Roof Types</span>
         </div>
         <div class="service-card reveal">
           <div class="service-num">04</div>
-          <div class="service-icon">🚨</div>
+          <div class="service-icon"><i data-lucide="siren"></i></div>
           <div class="service-title">Emergency Roof Repair</div>
           <p class="service-desc">Active leak? Structural damage? We're available around the clock to stop the damage before it gets worse.</p>
           <span class="service-tag">24/7 Response</span>
         </div>
         <div class="service-card reveal">
           <div class="service-num">05</div>
-          <div class="service-icon">🔍</div>
+          <div class="service-icon"><i data-lucide="search"></i></div>
           <div class="service-title">Leak Detection & Repair</div>
           <p class="service-desc">Advanced diagnostics to find the source of even the most stubborn leaks, and permanent repairs that last.</p>
           <span class="service-tag">No More Guessing</span>
         </div>
         <div class="service-card reveal">
           <div class="service-num">06</div>
-          <div class="service-icon">📋</div>
+          <div class="service-icon"><i data-lucide="clipboard-list"></i></div>
           <div class="service-title">Roof Inspections</div>
           <p class="service-desc">Pre-sale inspections, annual maintenance checks, and post-storm assessments — documented and ready for your insurer.</p>
           <span class="service-tag">Always Free</span>
@@ -1672,21 +1689,21 @@
           <p>We don't just patch roofs. We handle your insurance claim, coordinate with your adjuster, and make sure you get every dollar you're owed — then we build a roof that lasts.</p>
           <ul class="differentiator-list">
             <li class="reveal">
-              <div class="diff-icon">📋</div>
+              <div class="diff-icon"><i data-lucide="clipboard-list"></i></div>
               <div>
                 <div class="diff-title">Insurance Claim Experts</div>
                 <div class="diff-desc">We work directly with your insurance company so you don't have to fight alone. From inspection to payout, we handle it.</div>
               </div>
             </li>
             <li class="reveal">
-              <div class="diff-icon">⚡</div>
+              <div class="diff-icon"><i data-lucide="zap"></i></div>
               <div>
                 <div class="diff-title">Rapid Emergency Response</div>
                 <div class="diff-desc">When the storm hits, we're there. 24/7 availability for tarping, leak containment, and emergency repairs.</div>
               </div>
             </li>
             <li class="reveal">
-              <div class="diff-icon">🤝</div>
+              <div class="diff-icon"><i data-lucide="handshake"></i></div>
               <div>
                 <div class="diff-title">Transparent, Honest Pricing</div>
                 <div class="diff-desc">No hidden fees, no bait-and-switch. You'll know exactly what we're doing and exactly what it costs before we start.</div>
@@ -1882,7 +1899,7 @@
 
   <!-- Floating Call Button (mobile only) -->
   <a href="tel:2607101811" class="float-call-btn" aria-label="Call Roof Rescue 911">
-    📞 Call Now — 260-710-1811
+    <i data-lucide="phone"></i> Call Now — 260-710-1811
   </a>
 
   <script>
@@ -2115,5 +2132,7 @@
       }, 30000);
     })();
   </script>
+
+  <script>lucide.createIcons();</script>
 </body>
 </html>
