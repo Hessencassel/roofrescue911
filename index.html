@@ -736,6 +736,39 @@
     .emergency-phone {
       text-align: center;
       flex-shrink: 0;
+      position: relative;
+    }
+
+    /* ===== RADAR PULSE ===== */
+    @keyframes radar-ring {
+      0%   { transform: translate(-50%, -50%) scale(0.5); opacity: 0.4; }
+      100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0;   }
+    }
+    .radar-pulse {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80px;
+      height: 80px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .radar-pulse span {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      border: 2px solid var(--red-light);
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0;
+      animation: radar-ring 2s ease-out infinite;
+    }
+    .radar-pulse span:nth-child(1) { animation-delay: 0s;     }
+    .radar-pulse span:nth-child(2) { animation-delay: 0.66s;  }
+    .radar-pulse span:nth-child(3) { animation-delay: 1.32s;  }
+    .phone-label, .phone-num, .availability {
+      position: relative;
+      z-index: 1;
     }
     .phone-label {
       font-size: 0.72rem;
@@ -813,6 +846,32 @@
       color: rgba(193,18,31,0.12);
       font-family: Georgia, serif;
       line-height: 1;
+    }
+
+    /* ===== ABOUT SVG ===== */
+    .about-svg-wrap {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .svg-draw {
+      fill: none;
+      stroke: var(--red);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke-dashoffset 1.5s ease-out;
+    }
+    .svg-draw.drawn {
+      stroke-dashoffset: 0;
+    }
+    .about-svg-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-top: 10px;
     }
 
     /* ===== ABOUT ===== */
@@ -1154,6 +1213,42 @@
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* ===== STATS STRIP ===== */
+    .stats-strip {
+      background: var(--dark);
+      padding: 60px 40px;
+    }
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--red);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-top: 8px;
+    }
+    @media (max-width: 767px) {
+      .stats-row { gap: 40px; }
+      .stat-num  { font-size: 3rem; }
     }
 
     /* ===== BEFORE/AFTER SLIDER ===== */
@@ -1501,6 +1596,7 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-bg"></div>
+    <canvas id="rain-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;"></canvas>
     <div class="hero-bg-num">911</div>
     <div class="hero-content">
       <div class="hero-badge">Greater Fort Wayne's Emergency Roofing Specialists</div>
@@ -1606,7 +1702,24 @@
     </div>
   </section>
 
-  <!-- Emergency Banner -->
+  <!-- Stats Strip -->
+  <div class="stats-strip" id="stats-strip">
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-num" data-target="500" data-suffix="+" data-prefix="">0</div>
+        <div class="stat-label">Roofs Rescued in Fort Wayne</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="2.4" data-suffix="M+" data-prefix="$" data-decimals="1">$0M+</div>
+        <div class="stat-label">In Insurance Claims Filed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="47" data-suffix="" data-prefix="">0</div>
+        <div class="stat-label">Five-Star Reviews</div>
+      </div>
+    </div>
+  </div>
+
   <!-- Projects Gallery -->
 
   <section id="projects" style="background: var(--white); padding: 80px 40px;">
@@ -1736,6 +1849,11 @@
         <p>Available 24 hours a day, 7 days a week. No voicemail. No waiting.</p>
       </div>
       <div class="emergency-phone">
+        <div class="radar-pulse" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <div class="phone-label">Emergency Hotline</div>
         <a href="tel:2607101811" class="phone-num">260-710-1811</a>
         <div class="availability">Available 24/7 · Greater Fort Wayne & Surrounding Areas</div>
@@ -1755,6 +1873,18 @@
           <p style="color: var(--text-mid); line-height: 1.75; font-size: 1rem;">Paul brings hands-on construction experience, deep knowledge of the insurance claim process, and a personal commitment to every job. He doesn't send a crew and disappear — he's there.</p>
         </div>
         <div class="reveal">
+          <div class="about-svg-wrap">
+            <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Roof Rescue 911 house icon">
+              <!-- House outline: left wall up, overhang, roof peak, overhang, right wall down, close base -->
+              <path class="svg-draw" id="svg-house"
+                    d="M 40,172 L 40,92 L 22,92 L 100,24 L 178,92 L 160,92 L 160,172 Z" />
+              <!-- Rescue cross — horizontal bar -->
+              <line class="svg-draw" id="svg-cross-h" x1="72" y1="130" x2="128" y2="130" />
+              <!-- Rescue cross — vertical bar -->
+              <line class="svg-draw" id="svg-cross-v" x1="100" y1="106" x2="100" y2="155" />
+            </svg>
+            <div class="about-svg-label">Roof Rescue 911</div>
+          </div>
           <div style="background: var(--red); padding: 32px; margin-bottom: 24px;">
             <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 12px;">From the Founder</div>
             <p style="font-size: 1.05rem; line-height: 1.7; color: var(--white); font-style: italic;">"I started this company because I was tired of seeing families taken advantage of during the most stressful moments of their lives. A damaged roof is an emergency. You deserve someone who treats it that way."</p>
@@ -2130,6 +2260,183 @@
       setTimeout(function () {
         popup.classList.add('visible');
       }, 30000);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var canvas = document.getElementById('rain-canvas');
+      if (!canvas || !canvas.getContext) return;
+      var ctx  = canvas.getContext('2d');
+      var hero = document.querySelector('.hero');
+      var COUNT   = 120;
+      var drops   = [];
+      var running = false;
+
+      function init() {
+        canvas.width  = hero.offsetWidth;
+        canvas.height = hero.offsetHeight;
+        drops = [];
+        for (var i = 0; i < COUNT; i++) {
+          drops.push({
+            x:       Math.random() * canvas.width,
+            y:       Math.random() * canvas.height,
+            speed:   1.4 + Math.random() * 1.6,
+            drift:   0.25 + Math.random() * 0.35,
+            opacity: 0.12 + Math.random() * 0.06,
+            len:     10 + Math.random() * 6,
+            angle:   Math.PI / 14 + Math.random() * (Math.PI / 14)
+          });
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (var i = 0; i < COUNT; i++) {
+          var d = drops[i];
+          ctx.save();
+          ctx.globalAlpha = d.opacity;
+          ctx.fillStyle   = '#ffffff';
+          ctx.translate(d.x, d.y);
+          ctx.rotate(d.angle);
+          ctx.fillRect(-1, 0, 2, d.len);
+          ctx.restore();
+          d.y += d.speed;
+          d.x += d.drift;
+          if (d.y > canvas.height + d.len) {
+            d.y = -d.len * 2;
+            d.x = Math.random() * canvas.width;
+          }
+        }
+        if (running) requestAnimationFrame(animate);
+      }
+
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(init, 150);
+      }, { passive: true });
+
+      new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          if (!running) { running = true; requestAnimationFrame(animate); }
+        } else {
+          running = false;
+        }
+      }, { threshold: 0 }).observe(hero);
+
+      init();
+      running = true;
+      requestAnimationFrame(animate);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var strip = document.getElementById('stats-strip');
+      if (!strip) return;
+      var nums = strip.querySelectorAll('.stat-num');
+      var animated = false;
+      var DURATION = 2000;
+
+      function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+      function fmt(el, val) {
+        var dec     = parseInt(el.dataset.decimals || '0', 10);
+        var prefix  = el.dataset.prefix  || '';
+        var suffix  = el.dataset.suffix  || '';
+        var display = dec > 0 ? val.toFixed(dec) : Math.floor(val).toString();
+        el.textContent = prefix + display + suffix;
+      }
+
+      function runCountUp() {
+        if (animated) return;
+        animated = true;
+        var start = null;
+        var targets = Array.prototype.map.call(nums, function (el) {
+          return parseFloat(el.dataset.target);
+        });
+
+        function step(ts) {
+          if (!start) start = ts;
+          var elapsed  = ts - start;
+          var progress = Math.min(elapsed / DURATION, 1);
+          var eased    = easeOut(progress);
+
+          nums.forEach(function (el, i) {
+            fmt(el, targets[i] * eased);
+          });
+
+          if (progress < 1) requestAnimationFrame(step);
+          else nums.forEach(function (el, i) { fmt(el, targets[i]); });
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) runCountUp();
+      }, { threshold: 0.3 }).observe(strip);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var paths = document.querySelectorAll('.svg-draw');
+      if (!paths.length) return;
+
+      // Set exact path lengths as presentation attributes so CSS can override with .drawn
+      paths.forEach(function (el) {
+        var len = el.getTotalLength();
+        el.setAttribute('stroke-dasharray', len);
+        el.setAttribute('stroke-dashoffset', len);
+      });
+
+      // Stagger: house draws first, cross arms follow
+      var delays = [0, 0.85, 1.05];
+      paths.forEach(function (el, i) {
+        el.style.transitionDelay = (delays[i] !== undefined ? delays[i] : 0) + 's';
+      });
+
+      var drawn = false;
+      new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting && !drawn) {
+          drawn = true;
+          paths.forEach(function (el) { el.classList.add('drawn'); });
+        }
+      }, { threshold: 0.3 }).observe(document.getElementById('about'));
+    })();
+  </script>
+
+  <script>
+    (function () {
+      if (window.innerWidth < 768) return;
+
+      var CAP    = 8;
+      var FACTOR = 0.2;
+
+      function clamp(val, min, max) {
+        return Math.min(Math.max(val, min), max);
+      }
+
+      function attach(el) {
+        el.addEventListener('mousemove', function (e) {
+          var rect    = el.getBoundingClientRect();
+          var centerX = rect.left + rect.width  / 2;
+          var centerY = rect.top  + rect.height / 2;
+          var x = clamp((e.clientX - centerX) * FACTOR, -CAP, CAP);
+          var y = clamp((e.clientY - centerY) * FACTOR, -CAP, CAP);
+          el.style.transition = 'transform 0.08s linear';
+          el.style.transform  = 'translate(' + x + 'px, ' + y + 'px)';
+        });
+
+        el.addEventListener('mouseleave', function () {
+          el.style.transition = 'transform 0.3s ease-out';
+          el.style.transform  = 'translate(0, 0)';
+        });
+      }
+
+      document.querySelectorAll('.btn-primary, .nav-cta').forEach(attach);
     })();
   </script>
 
