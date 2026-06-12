@@ -71,6 +71,24 @@
       height: 72px;
     }
 
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-logo small {
+      display: block;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      color: var(--silver);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
     .nav-links {
       display: flex;
       gap: 32px;
@@ -1544,7 +1562,10 @@
 
   <!-- Nav -->
   <nav id="main-nav">
-    <img src="NewRoofRescue.png" alt="Roof Rescue 911" style="height: 56px; display: block;">
+    <div class="nav-logo">
+      Roof Rescue <span>911</span>
+      <small>Greater Fort Wayne, Indiana</small>
+    </div>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -1962,7 +1983,7 @@
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="NewRoofRescue.png" alt="Roof Rescue 911" style="height: 48px; display: block;">
+        <div class="nav-logo" style="font-size: 1.5rem;">Roof Rescue <span style="color:var(--red)">911</span></div>
         <p>Greater Fort Wayne's trusted emergency roofing and storm damage restoration specialists. Licensed, insured, and available 24/7.</p>
         <div class="social-links">
           <a href="https://www.facebook.com/roofrescue911" class="social-link" title="Facebook">f</a>
